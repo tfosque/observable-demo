@@ -1,0 +1,13 @@
+<div class="row justify-content-md-center">
+  <div class="col-auto mb-1" *ngFor="let sel of selections | async">
+    <button class="btn btn-secondary btn-sm">
+      <span
+        (click)="removeSelection(sel)"
+        class="fa fa-times"
+        style="color: red"
+      ></span
+      >&nbsp;
+      <small>{{ sel.name }}</small>
+    </button>
+  </div>
+</div>

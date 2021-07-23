@@ -1,0 +1,33 @@
+<div style="border: solid thin #cac9c9" class="col mb-1 pt-1">
+  <h3 style="margin-bottom: 0px">
+    {{ label }}
+    <span *ngIf="label === 'Products'"
+      >&nbsp;{{ products.getValue().length }}</span
+    >
+  </h3>
+  <div class="row" *ngIf="label === 'Selections'">
+    <div class="col-md-10">
+      <app-selected-products-group
+        [selections]="selections$"
+      ></app-selected-products-group>
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-primary mb-1">
+        Add to Cart&nbsp;<span class="fa fa-plus-square"></span>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngFor="let product of products | async">
+      <div class="col-md-2">
+        <app-product
+          [product]="product"
+          (userSelections)="addUserSelection($event)"
+          (click)="addUserSelection(product)"
+        ></app-product>
+      </div>
+    </ng-container>
+
+    <app-alert [alerts]="alerts$" *ngIf="label === 'Alert'"></app-alert>
+  </div>
+</div>
