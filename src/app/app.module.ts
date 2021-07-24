@@ -23,6 +23,7 @@ import { ProductComponent } from './components/product/product.component';
 import { SelectedProductsGroupComponent } from './components/selected-products-group/selected-products-group.component';
 import { BoxComponent } from './components/box/box.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { SelectedButtonComponent } from './components/selected-products-group/selected-button/selected-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { AlertComponent } from './components/alert/alert.component';
     SelectedProductsGroupComponent,
     BoxComponent,
     AlertComponent,
+    SelectedButtonComponent,
   ],
   imports: [
     BrowserModule,

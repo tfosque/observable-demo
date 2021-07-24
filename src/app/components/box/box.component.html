@@ -1,6 +1,6 @@
 <div style="border: solid thin #cac9c9" class="col mb-1 pt-1">
   <h3 style="margin-bottom: 0px">
-    {{ label }}
+    <div *ngIf="label !== 'Selections'">{{ label }}</div>
     <span *ngIf="label === 'Products'"
       >&nbsp;{{ products.getValue().length }}</span
     >
@@ -12,7 +12,11 @@
       ></app-selected-products-group>
     </div>
     <div class="col-auto">
-      <button type="button" class="btn btn-primary mb-1">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm mb-1"
+        style="font-size: 0.575rem"
+      >
         Add to Cart&nbsp;<span class="fa fa-plus-square"></span>
       </button>
     </div>

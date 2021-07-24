@@ -24,6 +24,5 @@ export class BoxComponent implements OnInit {
 
   addUserSelection(product: any) {
     this.productStore.addToSelectedProducts(product);
-    console.log({ product });
   }
 }

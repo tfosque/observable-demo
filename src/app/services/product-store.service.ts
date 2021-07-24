@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+// import { filter } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +29,39 @@ export class ProductStoreService {
   }
 
   public addToSelectedProducts(newProduct: any) {
+    const dups = this.isDuplicate(newProduct);
+    /* Stop if already selected */
+    if (dups.length > 0) {
+      // console.log({ dups });
+      return;
+    }
+    /* contiue... if not selected*/
     const oldProducts = [...this.selectedProducts.value];
+    this.selectedProducts.next([...oldProducts, newProduct]);
+  }
+
+  public removeSelections(product: any) {
+    const oldProducts = this.selectedProducts.value;
     // console.log({ oldProducts });
 
-    this.selectedProducts.next([...oldProducts, newProduct]);
-    console.log('this:new:', this.selectedProducts.value);
+    const filterSelections = oldProducts.filter((f: any) => {
+      return f.id !== product.id;
+    });
+    // console.log({ filterSelections });
+    this.selectedProducts.next(filterSelections);
+
+    /* Lodash */
+    /* const x = filter(oldProducts, (i: any) => {
+      return i !== product.id;
+    });
+    console.log({ x }); */
+  }
+
+  isDuplicate(product: any) {
+    const oldProducts = this.selectedProducts.value;
+    const filterSelections = oldProducts.filter((f: any) => {
+      return f.id === product.id;
+    });
+    return filterSelections;
   }
 }
