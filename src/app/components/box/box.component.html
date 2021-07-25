@@ -1,10 +1,11 @@
 <div style="border: solid thin #cac9c9" class="col mb-1 pt-1">
   <h3 style="margin-bottom: 0px">
-    <div *ngIf="label !== 'Selections'">{{ label }}</div>
+    <span *ngIf="label !== 'Selections'">{{ label }}</span>
     <span *ngIf="label === 'Products'"
       >&nbsp;{{ products.getValue().length }}</span
     >
   </h3>
+  <!-- Selections -->
   <div class="row" *ngIf="label === 'Selections'">
     <div class="col-md-10">
       <app-selected-products-group
@@ -21,17 +22,18 @@
       </button>
     </div>
   </div>
-  <div class="row">
-    <ng-container *ngFor="let product of products | async">
-      <div class="col-md-2">
-        <app-product
-          [product]="product"
-          (userSelections)="addUserSelection($event)"
-          (click)="addUserSelection(product)"
-        ></app-product>
-      </div>
-    </ng-container>
-
-    <app-alert [alerts]="alerts$" *ngIf="label === 'Alert'"></app-alert>
-  </div>
 </div>
+
+<!-- Products -->
+<div class="row">
+  <ng-container *ngFor="let product of products | async">
+    <div class="col-2 mb-1">
+      <app-product
+        [product]="product"
+        (userSelections)="addUserSelection($event)"
+        (click)="addUserSelection(product)"
+      ></app-product>
+    </div>
+  </ng-container>
+</div>
+<app-alert [alerts]="alerts$" *ngIf="label === 'Alert'"></app-alert>

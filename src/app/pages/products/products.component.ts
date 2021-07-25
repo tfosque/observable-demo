@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { CartStoreService } from 'src/app/services/cart-store.service';
 import { ProductStoreService } from 'src/app/services/product-store.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productStore.getProducts();
     this.productStore.products$.pipe().subscribe((fromProductComponent) => {
-      this.products$.next(fromProductComponent.slice(1, 10));
+      this.products$.next(fromProductComponent);
       console.log({ fromProductComponent });
     });
   }

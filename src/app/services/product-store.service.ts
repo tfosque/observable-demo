@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-// import { filter } from 'lodash';
+import { filter, sortBy, sortedUniqBy, uniqBy } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,12 @@ export class ProductStoreService {
       .get<any>(this.apiTestProducts)
       .pipe()
       .subscribe((p) => {
-        this.products.next(p);
+        const page = p.slice(0, 24);
+        const sorted = this.sort(page);
+        this.products.next(sorted);
+        // console.log('p:', p.slice(0, 20));
+        console.log({ page });
+        console.log({ sorted });
       });
   }
 
@@ -57,11 +62,22 @@ export class ProductStoreService {
     console.log({ x }); */
   }
 
+  /* Already Selected */
   isDuplicate(product: any) {
     const oldProducts = this.selectedProducts.value;
     const filterSelections = oldProducts.filter((f: any) => {
       return f.id === product.id;
     });
+    filterSelections.length > 0
+      ? alert(`${product.name} was already selected`)
+      : null;
+    console.log({ filterSelections });
     return filterSelections;
+  }
+
+  /* Utils */
+  sort(items: any[]) {
+    const sort = sortBy(items, ['name']);
+    return uniqBy(sort, 'name');
   }
 }

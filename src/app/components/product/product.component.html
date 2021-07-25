@@ -1,7 +1,25 @@
-<div class="product row">
+<div class="product">
   <app-product-image style="cursor: pointer"></app-product-image>
+
   <div class="col line-item">
     <div>{{ product.name }}</div>
     <div>{{ product.phone }}</div>
+    <!-- Variations -->
+    <div class="d-flex">
+      <ng-container *ngFor="let item of product.variations">
+        <div class="flex-shrink">
+          <div
+            style="
+              width: 16px;
+              height: 16px;
+              text-align: center;
+              margin: 2px 1px 2px 0px;
+              padding: 4px;
+            "
+            [ngStyle]="{ 'background-color': item ? item.color : null }"
+          ></div>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>

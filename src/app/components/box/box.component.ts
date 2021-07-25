@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProductStoreService } from 'src/app/services/product-store.service';
+import { sortBy, sortedUniqBy } from 'lodash';
 
 @Component({
   selector: 'app-box',
