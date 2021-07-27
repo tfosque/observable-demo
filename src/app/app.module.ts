@@ -24,6 +24,7 @@ import { SelectedProductsGroupComponent } from './components/selected-products-g
 import { BoxComponent } from './components/box/box.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { SelectedButtonComponent } from './components/selected-products-group/selected-button/selected-button.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { SelectedButtonComponent } from './components/selected-products-group/se
     BoxComponent,
     AlertComponent,
     SelectedButtonComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

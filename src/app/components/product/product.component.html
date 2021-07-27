@@ -2,7 +2,16 @@
   <app-product-image style="cursor: pointer"></app-product-image>
 
   <div class="col line-item">
-    <div>{{ product.name }}</div>
+    <div class="m-2">
+      {{ product.name }}
+      <button
+        (click)="addItemToCart(product)"
+        class="btn btn-outline-secondary btn-sm text-right"
+        style="font-size: 0.5rem"
+      >
+        Add +
+      </button>
+    </div>
     <div>{{ product.phone }}</div>
     <!-- Variations -->
     <div class="d-flex">
@@ -10,8 +19,8 @@
         <div class="flex-shrink">
           <div
             style="
-              width: 16px;
-              height: 16px;
+              width: 8px;
+              height: 8px;
               text-align: center;
               margin: 2px 1px 2px 0px;
               padding: 4px;

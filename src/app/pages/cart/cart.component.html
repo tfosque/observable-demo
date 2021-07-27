@@ -1,2 +1,4 @@
 <h3>Shopping Cart</h3>
-<app-cart-item></app-cart-item>
+<ng-container *ngFor="let item of cart$ | async">
+  <app-cart-item [item]="item"></app-cart-item>
+</ng-container>

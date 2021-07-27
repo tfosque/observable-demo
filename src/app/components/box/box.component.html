@@ -1,9 +1,25 @@
 <div style="border: solid thin #cac9c9" class="col mb-1 pt-1">
-  <h3 style="margin-bottom: 0px">
-    <span *ngIf="label !== 'Selections'">{{ label }}</span>
-    <span *ngIf="label === 'Products'"
-      >&nbsp;{{ products.getValue().length }}</span
-    >
+  <h3 class="col-auto mb-0" style="font-weight: bold">
+    <div class="d-flex">
+      <div *ngIf="label !== 'Selections'; else header" class="flex-auto">
+        {{ label }}
+      </div>
+      <div *ngIf="label === 'Products'" class="flex-auto">
+        <div class="">
+          &nbsp;<span
+            class="badge badge-secondary"
+            *ngIf="(products | async)?.length > 0; else spinner"
+          >
+            {{ (products | async).length }}
+          </span>
+        </div>
+        <!-- Spinner -->
+        <ng-template #spinner>
+          <span class="fa fa-spinner fa-spin"></span>
+        </ng-template>
+      </div>
+      <ng-template #header> </ng-template>
+    </div>
   </h3>
   <!-- Selections -->
   <div class="row" *ngIf="label === 'Selections'">
@@ -15,10 +31,11 @@
     <div class="col-auto">
       <button
         type="button"
+        (click)="addItemsToCart()"
         class="btn btn-primary btn-sm mb-1"
         style="font-size: 0.575rem"
       >
-        Add to Cart&nbsp;<span class="fa fa-plus-square"></span>
+        Add to Cart&nbsp;<span class="fa fa-plus-square fa-lg"></span>
       </button>
     </div>
   </div>

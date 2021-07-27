@@ -16,6 +16,5 @@ export class ProductComponent implements OnInit {
   addItemToCart(item: any) {
     /* TEST: */
     this.cartStore.addCartItem(item);
-    return;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { CartStoreService } from 'src/app/services/cart-store.service';
 import { ProductStoreService } from 'src/app/services/product-store.service';
-import { sortBy, sortedUniqBy } from 'lodash';
 
 @Component({
   selector: 'app-box',
@@ -15,7 +15,10 @@ export class BoxComponent implements OnInit {
   selections$ = new BehaviorSubject<any>([]);
   alerts$ = new BehaviorSubject<any>([]);
 
-  constructor(private readonly productStore: ProductStoreService) {}
+  constructor(
+    private readonly productStore: ProductStoreService,
+    private readonly cartStore: CartStoreService
+  ) {}
 
   ngOnInit(): void {
     this.productStore.selectedProducts$.subscribe((selected) => {
@@ -23,7 +26,11 @@ export class BoxComponent implements OnInit {
     });
   }
 
-  addUserSelection(product: any) {
+  addUserSelection(product: any): void {
     this.productStore.addToSelectedProducts(product);
+  }
+
+  addItemsToCart(): void {
+    this.cartStore.addSelectedProductsToCart(this.selections$.getValue());
   }
 }

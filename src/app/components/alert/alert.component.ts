@@ -13,6 +13,6 @@ export class AlertComponent implements OnInit {
 
   ngOnInit(): void {
     // this.alerts.next([{ label: 'Notification', hide: false }]);
-    console.log('alerts:', this.alerts.value);
+    // console.log('alerts:', this.alerts.value);
   }
 }
